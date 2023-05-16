@@ -32,7 +32,7 @@ public class ImageService {
     public void deleteImage(Integer id){
 
         Optional<Image> optionalImage = imageRepository2.findById(id);
-        if(!optionalImage.isPresent()) return;
+//        if(!optionalImage.isPresent()) return;
         Image image = optionalImage.get();
         Blog blog = image.getBlog();
         blog.getImageList().remove(image);

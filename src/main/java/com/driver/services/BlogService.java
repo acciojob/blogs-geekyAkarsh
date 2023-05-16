@@ -33,7 +33,7 @@ public class BlogService {
         //delete blog and corresponding images
 
         Optional<Blog> optionalBlog = blogRepository1.findById(blogId);
-        if(!optionalBlog.isPresent()) return;
+//        if(!optionalBlog.isPresent()) return;
         Blog blog = optionalBlog.get();
         User user = blog.getUser();
         user.getBlogList().remove(blog);
