@@ -16,7 +16,8 @@ public class UserService {
 
     public User createUser(String username, String password){
 
-        if(username.length() == 0 || password.length() == 0) return null;
+        User user1 = userRepository3.findByUsername(username);
+        if(user1!=null) return null;
 
         User user = new User(username,password,"test","test");
 
