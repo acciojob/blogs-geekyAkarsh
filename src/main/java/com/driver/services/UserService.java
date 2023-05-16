@@ -16,6 +16,8 @@ public class UserService {
 
     public User createUser(String username, String password){
 
+        if(username.length() == 0 || password.length() == 0) return null;
+
         User user = new User(username,password,"test","test");
 
         User savedUser = userRepository3.save(user);
@@ -24,8 +26,8 @@ public class UserService {
 
     public void deleteUser(int userId){
 
-        Optional<User> optionalUser = userRepository3.findById(userId);
-        if(!optionalUser.isPresent()) return;
+//        Optional<User> optionalUser = userRepository3.findById(userId);
+//        if(!optionalUser.isPresent()) return;
         userRepository3.deleteById(userId);
         return;
     }
