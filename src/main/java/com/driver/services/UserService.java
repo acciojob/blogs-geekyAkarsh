@@ -16,14 +16,10 @@ public class UserService {
 
     public User createUser(String username, String password){
 
-        User user1 = userRepository3.findByUsername(username);
-        if(user1!=null) return null;
-
         User user = new User(username,password,"test","test");
 
         User savedUser = userRepository3.save(user);
-//        return savedUser;
-        return null;
+        return user;
     }
 
     public void deleteUser(int userId){
