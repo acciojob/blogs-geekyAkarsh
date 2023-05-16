@@ -13,7 +13,7 @@ public class User{
     private Integer id;
 
     @Column(name = "user_name",unique = true,nullable = false)
-    private String userName;
+    private String username;
     @Column(name = "password",nullable = false)
     private String password;
     @Column(name = "first_name",nullable = false)
@@ -22,22 +22,22 @@ public class User{
     private String lastName;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    List<Blog> blogs = new ArrayList<>();
+    List<Blog> blogList = new ArrayList<>();
     public User(){}
 
-    public User(String userName, String password, String firstName, String lastName) {
-        this.userName = userName;
+    public User(String username, String password, String firstName, String lastName) {
+        this.username = this.username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public List<Blog> getBlogs() {
-        return blogs;
+    public List<Blog> getBlogList() {
+        return blogList;
     }
 
-    public void setBlogs(List<Blog> blogs) {
-        this.blogs = blogs;
+    public void setBlogList(List<Blog> blogList) {
+        this.blogList = blogList;
     }
 
     public Integer getId() {
@@ -48,12 +48,12 @@ public class User{
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
