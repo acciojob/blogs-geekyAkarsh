@@ -5,6 +5,8 @@ import com.driver.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ImageService {
 
@@ -29,7 +31,9 @@ public class ImageService {
 
     public void deleteImage(Integer id){
 
-        Image image = imageRepository2.findById(id).get();
+        Optional<Image> optionalImage = imageRepository2.findById(id);
+        if(!optionalImage.isPresent()) return;
+        Image image = optionalImage.get();
         Blog blog = image.getBlog();
         blog.getImageList().remove(image);
         blogRepository2.save(blog);

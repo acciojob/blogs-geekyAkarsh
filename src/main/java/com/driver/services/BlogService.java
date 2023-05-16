@@ -7,6 +7,8 @@ import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class BlogService {
     @Autowired
@@ -30,8 +32,9 @@ public class BlogService {
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
 
-        Blog blog = blogRepository1.findById(blogId).get();
-
+        Optional<Blog> optionalBlog = blogRepository1.findById(blogId);
+        if(!optionalBlog.isPresent()) return;
+        Blog blog = optionalBlog.get();
         User user = blog.getUser();
         user.getBlogList().remove(blog);
         userRepository1.save(user);
