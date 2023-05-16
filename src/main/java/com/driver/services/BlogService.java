@@ -7,6 +7,7 @@ import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
@@ -22,11 +23,27 @@ public class BlogService {
 
         Blog blog = new Blog(title,content);
 
-        User user = userRepository1.findById(userId).get();
-        blog.setUser(user);
-        user.getBlogList().add(blog);
-        userRepository1.save(user);
-        return blog;
+//        User user = userRepository1.findById(userId).get();
+//        blog.setUser(user);
+//        user.getBlogList().add(blog);
+//        userRepository1.save(user);
+//        return blog;
+
+
+        Optional<User> optionalUser = userRepository1.findById(userId);
+        if(optionalUser.isPresent()){
+
+            User user = userRepository1.findById(userId).get();
+            blog.setUser(user);
+            user.getBlogList().add(blog);
+            userRepository1.save(user);
+            return blog;
+        }else {
+
+            Blog savedBlog = blogRepository1.save(blog);
+            return savedBlog;
+        }
+
     }
 
     public void deleteBlog(int blogId){

@@ -19,7 +19,7 @@ public class UserService {
         User user = new User(username,password,"test","test");
 
         User savedUser = userRepository3.save(user);
-        return user;
+        return savedUser;
     }
 
     public void deleteUser(int userId){
