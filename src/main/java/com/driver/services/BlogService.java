@@ -23,26 +23,12 @@ public class BlogService {
 
         Blog blog = new Blog(title,content);
 
-//        User user = userRepository1.findById(userId).get();
-//        blog.setUser(user);
-//        user.getBlogList().add(blog);
-//        userRepository1.save(user);
-//        return blog;
-
-
-        Optional<User> optionalUser = userRepository1.findById(userId);
-        if(optionalUser.isPresent()){
-
-            User user = userRepository1.findById(userId).get();
-            blog.setUser(user);
-            user.getBlogList().add(blog);
-            userRepository1.save(user);
-            return blog;
-        }else {
-
-            Blog savedBlog = blogRepository1.save(blog);
-            return savedBlog;
-        }
+        User user = userRepository1.findById(userId).get();
+        blog.setUser(user);
+        user.getBlogList().add(blog);
+        userRepository1.save(user);
+        Blog savedBlog = blogRepository1.save(blog);
+        return savedBlog;
 
     }
 
